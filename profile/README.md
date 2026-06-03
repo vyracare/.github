@@ -34,6 +34,11 @@ Padrao de release:
 - deploy em S3 + CloudFront
 - separacao entre ambiente local, `dev`, `hml` e `prod`
 
+Links principais do frontend:
+
+- Design system: [https://github.com/vyracare/vyracare-design-system](https://github.com/vyracare/vyracare-design-system)
+- Storybook: [https://d2pws2zjq41jau.cloudfront.net](https://d2pws2zjq41jau.cloudfront.net)
+
 Arquivos de ambiente Angular:
 
 - `environment.ts`: desenvolvimento local
