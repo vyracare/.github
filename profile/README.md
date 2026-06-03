@@ -1,6 +1,8 @@
 # Vyracare
 
-Vyracare e um ecossistema modular com frontend Angular, APIs .NET, templates e pipelines reutilizaveis para entrega em `dev`, `hml` e `prod`.
+Vyracare e um ecossistema modular para clinicas de estetica, com frontend Angular, APIs .NET, templates e pipelines reutilizaveis para entrega em `dev`, `hml` e `prod`.
+
+O foco do produto e suportar a operacao digital da clinica com uma base tecnica que permita evolucao continua, separacao por dominio e promocao controlada entre ambientes.
 
 ## Como o fluxo funciona
 
@@ -30,6 +32,7 @@ Padrao de release:
 - MFEs Angular carregados por `remoteEntry.js`
 - `vyracare-design-system` como base compartilhada de UI
 - deploy em S3 + CloudFront
+- separacao entre ambiente local, `dev`, `hml` e `prod`
 
 Arquivos de ambiente Angular:
 
@@ -46,6 +49,7 @@ Arquivos de ambiente Angular:
 - exposicao por API Gateway HTTP
 - persistencia em MongoDB
 - segredos em AWS Secrets Manager
+- deploy independente por dominio funcional
 
 ## Repositorios principais
 
@@ -84,10 +88,10 @@ Arquivos de ambiente Angular:
 
 | Ambiente | URL |
 | --- | --- |
-| Local | `http://localhost:4200` |
-| Dev | `https://dnhcnj7sdnfel.cloudfront.net` |
-| HML | `https://d2ukbrzje889m2.cloudfront.net` |
-| Prod | `https://d13ugmrrfi5a31.cloudfront.net` |
+| Local | [http://localhost:4200](http://localhost:4200) |
+| Dev | [https://dnhcnj7sdnfel.cloudfront.net](https://dnhcnj7sdnfel.cloudfront.net) |
+| HML | [https://d2ukbrzje889m2.cloudfront.net](https://d2ukbrzje889m2.cloudfront.net) |
+| Prod | [https://d13ugmrrfi5a31.cloudfront.net](https://d13ugmrrfi5a31.cloudfront.net) |
 
 ### APIs
 
@@ -95,26 +99,62 @@ Arquivos de ambiente Angular:
 
 | Ambiente | Base URL |
 | --- | --- |
-| Local | `http://localhost:5000/api/auth` |
-| Dev | `https://axswteu0u1.execute-api.us-east-1.amazonaws.com/api/auth` |
-| HML | `https://jkvfvgsw4l.execute-api.us-east-1.amazonaws.com/api/auth` |
-| Prod | `https://bj6riwfeni.execute-api.us-east-1.amazonaws.com/api/auth` |
+| Local | [http://localhost:5000/api/auth](http://localhost:5000/api/auth) |
+| Dev | [https://axswteu0u1.execute-api.us-east-1.amazonaws.com/api/auth](https://axswteu0u1.execute-api.us-east-1.amazonaws.com/api/auth) |
+| HML | [https://jkvfvgsw4l.execute-api.us-east-1.amazonaws.com/api/auth](https://jkvfvgsw4l.execute-api.us-east-1.amazonaws.com/api/auth) |
+| Prod | [https://bj6riwfeni.execute-api.us-east-1.amazonaws.com/api/auth](https://bj6riwfeni.execute-api.us-east-1.amazonaws.com/api/auth) |
 
 #### Client
 
 | Ambiente | Base URL |
 | --- | --- |
-| Dev | `https://028k6c7rpb.execute-api.us-east-1.amazonaws.com/api/client` |
-| HML | `https://1vd2y2p3ni.execute-api.us-east-1.amazonaws.com/api/client` |
-| Prod | `https://4uh1kerr9a.execute-api.us-east-1.amazonaws.com/api/client` |
+| Dev | [https://028k6c7rpb.execute-api.us-east-1.amazonaws.com/api/client](https://028k6c7rpb.execute-api.us-east-1.amazonaws.com/api/client) |
+| HML | [https://1vd2y2p3ni.execute-api.us-east-1.amazonaws.com/api/client](https://1vd2y2p3ni.execute-api.us-east-1.amazonaws.com/api/client) |
+| Prod | [https://4uh1kerr9a.execute-api.us-east-1.amazonaws.com/api/client](https://4uh1kerr9a.execute-api.us-east-1.amazonaws.com/api/client) |
 
 #### Proceedings
 
 | Ambiente | Base URL |
 | --- | --- |
-| Dev | `https://eri1s9zq97.execute-api.us-east-1.amazonaws.com/api/proceedings` |
-| HML | `https://lsh2vmjq8k.execute-api.us-east-1.amazonaws.com/api/proceedings` |
-| Prod | `https://ya4lnham1d.execute-api.us-east-1.amazonaws.com/api/proceedings` |
+| Dev | [https://eri1s9zq97.execute-api.us-east-1.amazonaws.com/api/proceedings](https://eri1s9zq97.execute-api.us-east-1.amazonaws.com/api/proceedings) |
+| HML | [https://lsh2vmjq8k.execute-api.us-east-1.amazonaws.com/api/proceedings](https://lsh2vmjq8k.execute-api.us-east-1.amazonaws.com/api/proceedings) |
+| Prod | [https://ya4lnham1d.execute-api.us-east-1.amazonaws.com/api/proceedings](https://ya4lnham1d.execute-api.us-east-1.amazonaws.com/api/proceedings) |
+
+### Swagger das APIs
+
+O codigo das APIs possui Swagger habilitado, mas o estado atual publicado dos gateways nao esta consistente em todos os ambientes.
+
+Status validado em `2026-06-03`:
+
+- `authentication`: nao exposto no API Gateway atual
+- `client`: rota provisionada, mas respondendo `404`
+- `proceedings`: rota provisionada, mas respondendo `404`
+
+Mesmo assim, seguem os endpoints de referencia atualmente esperados:
+
+#### Authentication
+
+| Ambiente | Swagger |
+| --- | --- |
+| Dev | [https://axswteu0u1.execute-api.us-east-1.amazonaws.com/swagger/index.html](https://axswteu0u1.execute-api.us-east-1.amazonaws.com/swagger/index.html) |
+| HML | [https://jkvfvgsw4l.execute-api.us-east-1.amazonaws.com/swagger/index.html](https://jkvfvgsw4l.execute-api.us-east-1.amazonaws.com/swagger/index.html) |
+| Prod | [https://bj6riwfeni.execute-api.us-east-1.amazonaws.com/swagger/index.html](https://bj6riwfeni.execute-api.us-east-1.amazonaws.com/swagger/index.html) |
+
+#### Client
+
+| Ambiente | Swagger |
+| --- | --- |
+| Dev | [https://028k6c7rpb.execute-api.us-east-1.amazonaws.com/swagger/index.html](https://028k6c7rpb.execute-api.us-east-1.amazonaws.com/swagger/index.html) |
+| HML | [https://1vd2y2p3ni.execute-api.us-east-1.amazonaws.com/swagger/index.html](https://1vd2y2p3ni.execute-api.us-east-1.amazonaws.com/swagger/index.html) |
+| Prod | [https://4uh1kerr9a.execute-api.us-east-1.amazonaws.com/swagger/index.html](https://4uh1kerr9a.execute-api.us-east-1.amazonaws.com/swagger/index.html) |
+
+#### Proceedings
+
+| Ambiente | Swagger |
+| --- | --- |
+| Dev | [https://eri1s9zq97.execute-api.us-east-1.amazonaws.com/swagger/index.html](https://eri1s9zq97.execute-api.us-east-1.amazonaws.com/swagger/index.html) |
+| HML | [https://lsh2vmjq8k.execute-api.us-east-1.amazonaws.com/swagger/index.html](https://lsh2vmjq8k.execute-api.us-east-1.amazonaws.com/swagger/index.html) |
+| Prod | [https://ya4lnham1d.execute-api.us-east-1.amazonaws.com/swagger/index.html](https://ya4lnham1d.execute-api.us-east-1.amazonaws.com/swagger/index.html) |
 
 ## Onde aprofundar
 
