@@ -122,15 +122,7 @@ Arquivos de ambiente Angular:
 
 ### Swagger das APIs
 
-O codigo das APIs possui Swagger habilitado, mas o estado atual publicado dos gateways nao esta consistente em todos os ambientes.
-
-Status validado em `2026-06-03`:
-
-- `authentication`: nao exposto no API Gateway atual
-- `client`: rota provisionada, mas respondendo `404`
-- `proceedings`: rota provisionada, mas respondendo `404`
-
-Mesmo assim, seguem os endpoints de referencia atualmente esperados:
+As APIs publicadas expoem Swagger UI e `swagger.json` por ambiente.
 
 #### Authentication
 
