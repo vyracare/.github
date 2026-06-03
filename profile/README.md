@@ -161,6 +161,16 @@ Para detalhes tecnicos e operacionais:
 - `vyracare-spec-driven/03-delivery/dotnet-pipelines.md`
 - `vyracare-spec-driven/05-operations/runbooks.md`
 
+## Convencao de commits
+
+Os repositorios da organizacao seguem o padrao de mensagens de commit em portugues.
+
+Exemplos:
+
+- `feat: adiciona ambiente de homologacao`
+- `fix: corrige rotas de swagger da autenticacao`
+- `docs: atualiza matriz de ambientes e acessos`
+
 ## Observacoes
 
 - URLs de CloudFront e API Gateway podem mudar se um recurso for recriado.
