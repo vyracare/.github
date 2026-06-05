@@ -48,7 +48,7 @@ Arquivos de ambiente Angular:
 - runtime em AWS Lambda
 - exposicao por API Gateway HTTP
 - persistencia em MongoDB
-- segredos em AWS Secrets Manager
+- parametros seguros em AWS Systems Manager Parameter Store
 - deploy independente por dominio funcional
 
 ## Repositorios principais
